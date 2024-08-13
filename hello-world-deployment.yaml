@@ -1,0 +1,20 @@
+# hello-world-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+        - name: hello-world
+          image: localhost:5000/hello-world:latest
+          command: ["sh", "-c", "echo 'Hello, World!' && sleep 3600"]
